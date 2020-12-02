@@ -1,5 +1,6 @@
 import datetime
 import pyttsx3
+import wikipedia
 
 friend = pyttsx3.init()
 voices = friend.getProperty('voices')  # getting details of current voice
@@ -16,7 +17,7 @@ def main():
             time()
         elif action == 'date':
             date()
-        elif action == 'fine':
+        elif action == 'fine' or 'fine' in action:
             fine()
         elif action == 'tamim' or 'tamim' in action:
             tamim()
@@ -25,10 +26,12 @@ def main():
         elif action == 'exit':
             exit()
             break
+        else:
+            wiki()
 
 
 def select_action():
-    return input("Input:\n")
+    return input(">> >> ")
 
 
 def time():
@@ -73,6 +76,13 @@ def name():
     friend = pyttsx3.init()
     friend.say("My name is asif And I am always with you")
     friend.runAndWait()
+
+
+def wiki():
+
+    n = select_action()
+    result = wikipedia.search(n, results=2)
+    print(result)
 
 
 if __name__ == '__main__':
